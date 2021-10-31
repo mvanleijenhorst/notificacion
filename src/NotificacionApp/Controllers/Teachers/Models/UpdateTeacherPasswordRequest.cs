@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using NotificacionApp.Controllers.Common;
 
 namespace NotificacionApp.Controllers.Teachers.Models
@@ -6,7 +7,7 @@ namespace NotificacionApp.Controllers.Teachers.Models
     /// <summary>
     /// Update password of teacher request.
     /// </summary>
-    public record UpdateStudentPasswordRequest(Guid Id, string Password)
+    public record UpdateTeacherPasswordRequest([FromQuery] Guid Id, string Password)
     {
         /// <summary>
         /// Validate request.

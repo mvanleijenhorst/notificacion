@@ -9,8 +9,6 @@ namespace NotificacionApp.Controllers.Common
     /// </summary>
     public class ValidationResult
     {
-        private const string GeneralMessage = "general";
-
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -23,7 +21,7 @@ namespace NotificacionApp.Controllers.Common
         /// Validation messages.
         /// </summary>
         public IList<ValidationMessage> Messages { get; init; }
-        
+
         /// <summary>
         /// Is valid.
         /// </summary>
@@ -43,9 +41,9 @@ namespace NotificacionApp.Controllers.Common
         /// <param name="v"></param>
         /// <param name="response"></param>
         /// <param name="type"></param>
-        internal void HasValidEnum(string field, string value, Type type) => Validate(() => 
+        internal void HasValidEnum(string field, string value, Type type) => Validate(() =>
             Enum.TryParse(type, value, out _), ValidationMessage.InvalidValue(field));
-        
+
 
         /// <summary>
         /// Check if field is required.
@@ -83,7 +81,7 @@ namespace NotificacionApp.Controllers.Common
         /// </summary>
         /// <param name="element">Element</param>
         /// <param name="id">Id fo the element</param>
-        internal void RemoveFailed (string element, Guid id) => Messages.Add(ValidationMessage.RemoveFailed(element, id));
+        internal void RemoveFailed(string element, Guid id) => Messages.Add(ValidationMessage.RemoveFailed(element, id));
 
         /// <summary>
         /// Element couldn't be updated.

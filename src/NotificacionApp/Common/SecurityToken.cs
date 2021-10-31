@@ -3,11 +3,20 @@ using System.Text;
 
 namespace NotificacionApp.Common
 {
+    /// <summary>
+    /// Security token.
+    /// </summary>
     public class SecurityToken
     {
         private const string HashSeperator = ".";
         private const string FieldSeperator = "|";
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="userRole"></param>
         public SecurityToken(Guid id, string name, UserRole userRole)
         {
             Id = id;
@@ -15,14 +24,30 @@ namespace NotificacionApp.Common
             UserRole = userRole;
         }
 
+        /// <summary>
+        /// Guid.
+        /// </summary>
         public Guid Id { get; private set; }
 
+        /// <summary>
+        /// Name.
+        /// </summary>
         public string Name { get; private set; }
 
+        /// <summary>
+        /// User role.
+        /// </summary>
         public UserRole UserRole { get; private set; }
 
+        /// <summary>
+        /// Time.
+        /// </summary>
         public DateTime Time { get; private set; }
 
+        /// <summary>
+        /// Hash value.
+        /// </summary>
+        /// <returns>Hash value of the token</returns>
         public string Hash()
         {
             var now = DateTime.UtcNow.Ticks;
@@ -33,6 +58,11 @@ namespace NotificacionApp.Common
             return $"{encryptedKey}.{hashValue}";
         }
 
+        /// <summary>
+        /// Validate.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static SecurityToken? Validate(string value)
         {
             try

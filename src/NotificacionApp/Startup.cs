@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using NotificacionApp.Common;
 using NotificacionApp.Databases;
@@ -53,13 +51,13 @@ namespace NotificacionApp
 
 
             services.AddTransient<ISecurityService, SecurityService>();
-            services.AddSingleton<ISessionManager, SessionManager>();
+            services.AddScoped<ISessionManager, SessionManager>();
 
             services.AddDbContext<NotificacionDbContext>(options => options.UseSqlServer(connectionString));
             services.AddControllers();
             services.AddSwaggerGen(options =>
             {
-                options.CustomSchemaIds(type => $"{type.Name}_{System.Guid.NewGuid()}");
+                //options.CustomSchemaIds(type => $"{type.Name}_{System.Guid.NewGuid()}");
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "NotificacionApp", Version = "v1" });
                 options.OperationFilter<SecurityTokenOperationFilter>();
             });
@@ -83,15 +81,11 @@ namespace NotificacionApp
         /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         /// </summary>
         /// <param name="app"><see cref="IApplicationBuilder"/></param>
-        /// <param name="env"><see cref="IWebHostEnvironment"/></param>
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "NotificacionApp v1"));
-            }
+            app.UseDeveloperExceptionPage();
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "NotificacionApp v1"));
 
             app.UseDummyData();
 

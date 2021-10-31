@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.OpenApi.Models;
-using NotificacionApp.Controllers.Security;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace NotificacionApp.Common

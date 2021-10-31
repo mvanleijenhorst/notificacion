@@ -8,7 +8,7 @@ namespace NotificacionApp.Controllers.Teachers.Models
     /// <summary>
     /// Edit teacher request.
     /// </summary>
-    public record EditStudentRequest([FromQuery] Guid Id, string Name, string Username)
+    public record UpdateTeacherRequest([FromQuery] Guid Id, string Name, string Username)
     {
         /// <summary>
         /// Validate request.

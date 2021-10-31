@@ -7,7 +7,7 @@ namespace NotificacionApp.Controllers.Teachers.Models
     /// <summary>
     /// Remove teacher request.
     /// </summary>
-    public record RemoveStudentRequest([FromQuery] Guid Id)
+    public record RemoveTeacherRequest([FromQuery] Guid Id)
     {
         /// <summary>
         /// Validate request.
