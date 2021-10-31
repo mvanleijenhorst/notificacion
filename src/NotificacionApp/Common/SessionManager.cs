@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-
-namespace NotificacionApp.Common
+﻿namespace NotificacionApp.Common
 {
+    /// <summary>
+    /// Session manager.
+    /// </summary>
     public class SessionManager : ISessionManager
     {
+        /// <summary>
+        /// Session user.
+        /// </summary>
         public SessionUser? SessionUser { get; set; }
     }
 }

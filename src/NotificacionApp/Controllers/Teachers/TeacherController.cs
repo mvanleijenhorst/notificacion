@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using NotificacionApp.Common;
 using NotificacionApp.Controllers.Common;
 using NotificacionApp.Controllers.Teachers.Models;
 using NotificacionApp.Domain;
@@ -36,13 +37,13 @@ namespace NotificacionApp.Controllers.Teachers
         /// <summary>
         /// Add teacher.
         /// </summary>
-        /// <param name="request"><see cref="AddStudentRequest"/></param>
+        /// <param name="request"><see cref="AddTeacherRequest"/></param>
         /// <returns><see cref="AddTeacherResponse"/></returns>
         [Route("")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AddTeacherAsync(AddStudentRequest request)
+        public async Task<IActionResult> AddTeacherAsync(AddTeacherRequest request)
         {
             var validation = request.Validate();
             if (validation.IsValid())
@@ -61,13 +62,13 @@ namespace NotificacionApp.Controllers.Teachers
         /// Remove teacher.
         /// </summary>
         /// <param name="id">Id</param>
-        /// <returns><see cref="RemoveStudentRequest"/></returns>
+        /// <returns><see cref="RemoveTeacherRequest"/></returns>
         [Route("{id}")]
         [HttpDelete]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> RemoveTeacherAsync(RemoveStudentRequest request)
+        public async Task<IActionResult> RemoveTeacherAsync(RemoveTeacherRequest request)
         {
             var validation = request.Validate();
             if (!validation.IsValid())
@@ -91,17 +92,17 @@ namespace NotificacionApp.Controllers.Teachers
         }
 
         /// <summary>
-        /// Edit teacher.
+        /// Update teacher.
         /// </summary>
         /// <param name="id">Id of the teacher</param>
-        /// <param name="request"><see cref="EditStudentRequest"/></param>
-        /// <returns><see cref="EditTeacherResponse"/></returns>
+        /// <param name="request"><see cref="UpdateTeacherRequest"/></param>
+        /// <returns><see cref="UpdateTeacherResponse"/></returns>
         [Route("{id}")]
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> EditTeacherAsync(EditStudentRequest request)
+        public async Task<IActionResult> UpdateTeacherAsync(UpdateTeacherRequest request)
         {
             var validation = request.Validate();
             if (!validation.IsValid())
@@ -127,12 +128,12 @@ namespace NotificacionApp.Controllers.Teachers
         /// <summary>
         /// Get single teacher details.
         /// </summary>
-        /// <returns><see cref="ViewStudentResponse"/></returns>
+        /// <returns><see cref="ViewTeacherResponse"/></returns>
         [Route("{id}")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetTeacherAsync(GetStudentRequest request)
+        public async Task<IActionResult> GetTeacherAsync(GetTeacherRequest request)
         {
             var validation = request.Validate();
             if (!validation.IsValid())
@@ -146,7 +147,7 @@ namespace NotificacionApp.Controllers.Teachers
                     .GetByIdAsync(request.Id)
                     .ConfigureAwait(false);
 
-                return Ok(new ViewStudentResponse(teacher.Id, teacher.Name, teacher.Username));
+                return Ok(new ViewTeacherResponse(teacher.Id, teacher.Name, teacher.Username));
             }
             catch
             {
@@ -157,7 +158,7 @@ namespace NotificacionApp.Controllers.Teachers
         /// <summary>
         /// Get list of teachers.
         /// </summary>
-        /// <returns><see cref="ViewStudentResponse"/></returns>
+        /// <returns><see cref="ViewTeacherResponse"/></returns>
         [Route("")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -168,7 +169,7 @@ namespace NotificacionApp.Controllers.Teachers
                 .ConfigureAwait(false);
 
             var list = teachers
-                .Select(t => new ViewStudentResponse(t.Id, t.Name, t.Username))
+                .Select(t => new ViewTeacherResponse(t.Id, t.Name, t.Username))
                 .ToList();
 
             return Ok(list);
@@ -177,14 +178,14 @@ namespace NotificacionApp.Controllers.Teachers
         /// <summary>
         /// Set password.
         /// </summary>
-        /// <param name="request"><see cref="UpdateStudentPasswordRequest"/></param>
+        /// <param name="request"><see cref="UpdateTeacherPasswordRequest"/></param>
         /// <returns></returns>
         [Route("{id}/password")]
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> SetPassword(UpdateStudentPasswordRequest request)
+        public async Task<IActionResult> SetPassword(UpdateTeacherPasswordRequest request)
         {
             var validation = request.Validate();
             if (!validation.IsValid())

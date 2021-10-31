@@ -6,7 +6,7 @@ namespace NotificacionApp.Controllers.Teachers.Models
     /// <summary>
     /// Add teacher request.
     /// </summary>
-    public record AddStudentRequest(string Name, string Username)
+    public record AddTeacherRequest(string Name, string Username)
     {
         /// <summary>
         /// Validate request.

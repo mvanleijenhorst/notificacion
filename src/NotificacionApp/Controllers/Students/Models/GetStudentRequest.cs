@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using NotificacionApp.Controllers.Common;
 
 namespace NotificacionApp.Controllers.Students.Models
@@ -6,7 +7,7 @@ namespace NotificacionApp.Controllers.Students.Models
     /// <summary>
     /// Get student request.
     /// </summary>
-    public record GetStudentRequest(Guid Id)
+    public record GetStudentRequest([FromQuery] Guid Id)
     {
         /// <summary>
         /// Validate request.

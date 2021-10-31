@@ -2,6 +2,9 @@
 
 namespace NotificacionApp.Controllers.Common
 {
+    /// <summary>
+    /// Validation message.
+    /// </summary>
     public record ValidationMessage(string Field, string Message)
     {
         internal static ValidationMessage Required(string field) => new(field, $"{field} is required");

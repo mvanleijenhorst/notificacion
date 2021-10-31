@@ -1,16 +1,13 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using NotificacionApp.Common;
 using NotificacionApp.Domain;
 using NotificacionApp.Repositories;
-using System;
 
 namespace NotificacionApp.Databases.DummyData
 {
     public static class IApplicationBuilderExtensions
     {
-
-
         public static void UseDummyData(this IApplicationBuilder app)
         {
             using (var scope = app.ApplicationServices.CreateScope())

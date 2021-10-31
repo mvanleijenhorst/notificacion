@@ -1,5 +1,4 @@
 ﻿using System;
-using NotificacionApp.Common;
 using NotificacionApp.Controllers.Common;
 using NotificacionApp.Domain;
 
